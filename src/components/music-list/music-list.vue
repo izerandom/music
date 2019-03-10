@@ -38,9 +38,12 @@
 	import Loading from '../../CommonComponen/loading/loading.vue'
 	import SongList from '../../CommonComponen/song-list/song-list.vue'
 	import {mapGetters,mapActions,mapMutations} from 'vuex'
-	
+	import {playlistMixin} from 'common/js/mixin.js'
 	const RESERVED_HEIGHT =40
 	export default {
+		mixins:[
+			playlistMixin
+		],
 		data() {
 			return {
 				scrollY: 0,
@@ -92,6 +95,12 @@
 			
 		},
 		methods: {
+			handlePlaylist(playList){
+				const bottom =playList.length >0 ? '55px' : ''
+				this.$refs.list.$el.style.bottom=bottom
+				console.log("bottom refresh")
+				this.$refs.list.refresh()
+			},
 			back() {
 				this.$router.go(-1)
 			},
@@ -118,6 +127,7 @@
 						if (res.code === ERR_OK) {
 							const url=`http://dl.stream.qqmusic.qq.com/C400${this.songs[index].mid}.m4a?fromtag=38&guid=5931742855&vkey=${res.data.items[0].vkey}`;
 						if(res.data.items[0].vkey==''){
+							this.setnextready(true)
 							alert(this.songs[index].name+"——"+this.songs[index].singer+"为付费歌曲，请前往QQ音乐支持正版");
 						}else{
 							this.selectPlay({
@@ -141,7 +151,7 @@
 			]),
 			...mapMutations({
 				setnextready:'SET_NEXTREADY'
-			}),
+			})
 		},
 		components: {
 			Scroll,

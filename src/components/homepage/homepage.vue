@@ -37,7 +37,11 @@
 	import Scroll from '../../CommonComponen/scroll/scroll.vue'
 	import Loading from '../../CommonComponen/loading/loading.vue'
 	import {mapMutations} from 'vuex'
+	import {playlistMixin} from 'common/js/mixin.js'
 	export default {
+		mixins:[
+			playlistMixin
+		],
 		data() {
 			return {
 				img:[],
@@ -51,6 +55,12 @@
 			}, 800)
 		},
 		methods:{
+			handlePlaylist(playList){
+				const bottom =playList.length >0 ? '55px' : ''
+				this.$refs.homepage.style.bottom=bottom
+				console.log("bottom refresh")
+				this.$refs.scroll.refresh()
+			},
 			_getHomepage(){
 				getHomepage().then((res) => {
 					if (res.code === ERR_OK) {

@@ -21,7 +21,7 @@ export function getSongVkey(songmid) {
 }
 //歌词
 export function getLyric(mid) {
-   // const url = '/api/lyric'
+    // const url = '/api/lyric'
 const url='http://973369559.com/getlyric.php'
   const data = Object.assign({}, commonParams, {
     songmid: mid,

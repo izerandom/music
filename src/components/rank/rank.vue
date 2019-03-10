@@ -32,7 +32,11 @@
 	import Scroll from '../../CommonComponen/scroll/scroll.vue'
 	import Loading from '../../CommonComponen/loading/loading.vue'
 	import {mapMutations} from 'vuex'
+	import {playlistMixin} from 'common/js/mixin.js'
 	export default {
+		mixins:[
+			playlistMixin
+		],
 		created(){
 			setTimeout(() => {  
 				this._getTopList()
@@ -40,6 +44,12 @@
 			
 		},
 		methods:{
+			handlePlaylist(playList){
+				const bottom =playList.length >0 ? '55px' : ''
+				this.$refs.rank.style.bottom=bottom
+				console.log("bottom refresh")
+				this.$refs.toplist.refresh()
+			},
 			_getTopList() {
 				getTopList().then((res) => {
 					if (res.code === ERR_OK) {

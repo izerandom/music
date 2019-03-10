@@ -95,7 +95,6 @@
 		watch: {  //监听滚动，重新计算滚动条长度
 			data() {
 				setTimeout(() => {
-					console.log("scroll refresh")
 					this.refresh()
 				}, 20)
 			}

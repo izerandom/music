@@ -14,8 +14,8 @@ export function getHomepage() {
   return jsonp(url, data, options)
 }
 export function getDiscList() {   //歌单
-    // const url = '/api/getDiscList'
-	 const url='http://973369559.com/getdisc.php'
+     // const url = '/api/getDiscList'
+	  const url='http://973369559.com/getdisc.php'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq.json', // 加引号
     hostUin: 0,
@@ -37,8 +37,8 @@ export function getDiscList() {   //歌单
 }
 
 export function getSongList(disstid) {  //歌单详情
-	  // const url = '/api/getSongList'
-	 const url='http://973369559.com/discsong.php'
+	   // const url = '/api/getSongList'
+	  const url='http://973369559.com/discsong.php'
 	const data = Object.assign({}, commonParams, {
 	disstid,
 	type: 1,
