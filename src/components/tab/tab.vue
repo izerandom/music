@@ -37,8 +37,8 @@
 <style scoped>
 	.tab{
 		display: flex;
-		height: 38px;
-		line-height: 38px;
+		height: 44px;
+		line-height: 42px;
 		font-size: 15px;
 		background-color: white;
 	}

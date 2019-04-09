@@ -13,8 +13,8 @@
 					</svg>
 				</div>
 				
-				<div class="title" v-html="currentSong.name"  ref="name"></div>
-				<div class="subtitle" v-html="currentSong.singer" ref="singer"></div>
+				<div class="title" v-html="this.set===true?currentSong.name:''"  ref="name"></div>
+				<div class="subtitle" v-html="this.set===true?currentSong.singer:''" ref="singer"></div>
 			</div>
 			<div class="middle"
 				@touchstart.prevent="middleTouchStart"
@@ -100,9 +100,13 @@
 					</svg>
 				</div>
 				<div class="flex">
-					<svg width="50" height="50" :class="disable">
+					<svg width="50" height="50" :class="disable" @click="showplaylist">
 						<g class="layer">
-							<path stroke="white"  d="m25.123892,17.399173c6.13584,-17.542318 30.176264,0 0,22.554409c-30.176264,-22.554409 -6.13584,-40.096726 0,-22.554409z" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="none"/>
+							<path id="svg_5" d="m104.89901,299.18906c-0.07445,-0.00886 -0.10595,-0.09614 -0.09073,-0.16148c0.02618,-0.10321 0.12862,-0.17453 0.23139,-0.18612c0.03899,-0.00322 0.08199,-0.00267 0.1141,0.0219c0.02636,-0.01047 0.00781,-0.05175 0.01262,-0.07649c0,-0.30451 0,-0.60902 0,-0.91353c0.06628,-0.00966 0.02348,0.08419 0.03517,0.12263c-0.00044,0.33612 0.00275,0.67228 -0.00336,1.00837c-0.03232,0.12561 -0.17433,0.20519 -0.29919,0.18472zm0.01259,-0.05491c0.10172,-0.03234 0.19638,-0.09985 0.24477,-0.19688c0.00423,-0.05999 -0.07083,-0.04751 -0.10476,-0.02725c-0.05975,0.02994 -0.11599,0.06927 -0.16259,0.11732c-0.03094,0.02844 -0.07033,0.11584 0.00348,0.11088l0.0102,-0.00144l0.0089,-0.00262l0,0l0,0z" stroke-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#00bf00"/>
+							<path stroke="#000000" id="svg_11" d="m7.06331,33.1l35.97338,0l0,6.90001l-35.97338,0l0,-6.90001z" stroke-opacity="0" fill="#00bf00"/>
+							<path stroke="#000000" id="svg_14" d="m20.11331,10.04999l22.97338,0l0,6.90001l-22.97338,0l0,-6.90001z" stroke-opacity="0" fill="#00bf00"/>
+							<path id="svg_15" stroke="#000000" d="m7.01331,21.64999l35.97338,0l0,6.90001l-35.97338,0l0,-6.90001z" stroke-opacity="0" fill="#00bf00"/>
+							<path transform="rotate(90 14.528643608093262,13.751625061035158) " id="svg_16" d="m8.4715,19.05162l6.05714,-10.6l6.05714,10.6l-12.11428,0z" stroke-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#00bf00"/>
 						</g>
 					</svg>
 				</div>
@@ -141,10 +145,21 @@
 						</g>
 					</svg>
 				</span>		
-				
+				<span class="mini-list" @click="showplaylist">
+					<svg width="25" height="25" >
+						<g class="layer">
+							<path stroke="#000000" id="svg_1" d="m9.08899,3.10791l12.87338,0l0,3.9l-12.87338,0l0,-3.9z" stroke-opacity="0" fill="#00bf00"/>
+							<path stroke="#000000" id="svg_3" d="m3.0133,10.07656l18.97339,0l0,4l-18.97339,0l0,-4z" stroke-opacity="0" fill="#00bf00"/>
+							<path stroke="#000000" id="svg_4" d="m3.1133,17.17656l18.87339,0l0,3.9l-18.87339,0l0,-3.9z" stroke-opacity="0" fill="#00bf00"/>
+							<path id="svg_5" d="m104.89901,299.18906c-0.07445,-0.00886 -0.10595,-0.09614 -0.09073,-0.16148c0.02618,-0.10321 0.12862,-0.17453 0.23139,-0.18612c0.03899,-0.00322 0.08199,-0.00267 0.1141,0.0219c0.02636,-0.01047 0.00781,-0.05175 0.01262,-0.07649c0,-0.30451 0,-0.60902 0,-0.91353c0.06628,-0.00966 0.02348,0.08419 0.03517,0.12263c-0.00044,0.33612 0.00275,0.67228 -0.00336,1.00837c-0.03232,0.12561 -0.17433,0.20519 -0.29919,0.18472zm0.01259,-0.05491c0.10172,-0.03234 0.19638,-0.09985 0.24477,-0.19688c0.00423,-0.05999 -0.07083,-0.04751 -0.10476,-0.02725c-0.05975,0.02994 -0.11599,0.06927 -0.16259,0.11732c-0.03094,0.02844 -0.07033,0.11584 0.00348,0.11088l0.0102,-0.00144l0.0089,-0.00262l0,0l0,0z" stroke-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#00bf00"/>
+							<path transform="rotate(90 5.78249979019165,5.248554706573487) " id="svg_9" d="m2.8825,7.78605l2.9,-5.075l2.9,5.075l-5.8,0z" stroke-opacity="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#00bf00"/>
+						</g>
+					</svg>
+				</span>	
 			</div>
 		</div>
 		</transition>
+		<playlist  ref="playlist"></playList>
 		<audio ref="audio" :src="url" @canplay="ready" @error="error" @timeupdate="updatetime" @ended="end">
 		</audio>
 	</div>
@@ -162,6 +177,8 @@
 	import {shuffle} from 'common/js/util.js'
 	import Lyric from 'lyric-parser'
 	import Scroll from '../../CommonComponen/scroll/scroll.vue'
+	import {debounce} from 'common/js/util.js'
+	import playlist from '../playlist/playlist.vue'
 	export default{
 		data() {
 			return {
@@ -172,7 +189,11 @@
 				currentLineNum:0,
 				currentShow:"cd",
 				cdlyric:'',
-			}
+				defaultlyric:[
+					{lines:"暂无歌词"}
+				],
+				set:true
+			}	
 		},
 		computed: {
 			...mapGetters([
@@ -183,11 +204,11 @@
 				'playing',
 				'currentIndex',
 				'mode',
-				'sequenceList',
-				'nextready'
+				'sequenceList'
 			]),
 			bgstyle() {
-				return `background-image:url(${this.currentSong.image})`;
+					return this.set===true?`background-image:url(${this.currentSong.image})`:''
+				
 			},
 			iconMode(){
 				return  this.mode === playMode.sequence ? "sequence" : 
@@ -207,6 +228,9 @@
 			this.touch={}
 		},
 		methods: {
+			showplaylist(){
+				this.$refs.playlist.show()
+			},
 			changeMode(){
 				const mode = (this.mode +1)%3;
 				this.setPlayMode(mode);
@@ -285,8 +309,7 @@
 				setCurrentIndex:'SET_CURRENT_INDEX',
 				seturl:'SET_URL',
 				setPlayMode:'SET_PLAY_MODE',
-				setPlayList:'SET_PLAYLIST',
-				setnextready:'SET_NEXTREADY'
+				setPlayList:'SET_PLAYLIST'
 			}),
 			...mapActions([
 				'selectPlay'
@@ -305,26 +328,22 @@
 				if(!this.songReady){
 					return
 				}
-				if(!this.nextready){
-					console.log("频繁操作")
-					return
-				}
 				if(this.playing){
 					this.setPlayingState(!this.playing)
 				}
-				this.$refs.lyric.style[`opacity`]=0
-				this.$refs.cdlyric.style[`opacity`]=0
-				this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,0,0)`
-				this.$refs.cd.style[`transition-duration`]=`600ms`
-				setTimeout(()=>{
-					this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,-200%,0)`
-					this.$refs.cd.style[`transition-duration`]=`400ms`
-				},600)
+				
 				
 				if(bool=="2"){
 					bool=this.fullScreen;
 				}
 				if(this.playList.length===1){
+					setTimeout(()=>{
+						this.$refs.cd.style[`transform`]=`translate3d(0,0,0)`
+						this.$refs.cd.style[`transition-duration`]=`1000ms`
+						this.$refs.lyric.style[`opacity`]=1
+						this.$refs.cdlyric.style[`opacity`]=1
+						this.setPlayingState(true);
+					},1000)
 					this.loop()
 				}else{
 					let index=this.currentIndex+1;
@@ -339,46 +358,45 @@
 							if(res.data.items[0].vkey==''){
 								this.songReady=true;
 								this.setCurrentIndex(index);
-								
 								this.next(bool);
 							}
 							else{
+								this.$refs.lyric.style[`opacity`]=0
+								this.$refs.cdlyric.style[`opacity`]=0
+								this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,0,0)`
+								this.$refs.cd.style[`transition-duration`]=`600ms`
+								setTimeout(()=>{
+									this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,-200%,0)`
+									this.$refs.cd.style[`transition-duration`]=`400ms`
+								},600)
 								setTimeout(()=>{
 									this.$refs.cd.style[`transform`]=`translate3d(0,0,0)`
 									this.$refs.cd.style[`transition-duration`]=`1000ms`
 									this.setPlayingState(true);
 									this.setCurrentIndex(index);
 									this.seturl(url);
-									this.setnextready(false);
-								console.log("下一首")
 								},1000)
 							}
 						}
 					})
 				}
-
 			},
 			prev(){
 				if(!this.songReady){
 					return
 				}
-				if(!this.nextready){
-					console.log("频繁操作")
-					return
-				}
 				if(this.playing){
 					this.setPlayingState(!this.playing)
 				}
-				this.$refs.lyric.style[`opacity`]=0
-				this.$refs.cdlyric.style[`opacity`]=0
-				this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,0,0)`
-				this.$refs.cd.style[`transition-duration`]=`600ms`
-				setTimeout(()=>{
-					this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,-200%,0)`
-					this.$refs.cd.style[`transition-duration`]=`400ms`
-				},600)
 				
 				if(this.playList.length===1){
+					setTimeout(()=>{
+						this.$refs.cd.style[`transform`]=`translate3d(0,0,0)`
+						this.$refs.cd.style[`transition-duration`]=`1000ms`
+						this.$refs.lyric.style[`opacity`]=1
+						this.$refs.cdlyric.style[`opacity`]=1
+						this.setPlayingState(true);
+					},1000)
 					this.loop()
 				}else{
 					let index=this.currentIndex-1;
@@ -392,46 +410,59 @@
 							if(res.data.items[0].vkey==''){
 								this.songReady=true;
 								this.setCurrentIndex(index);
-								
 								this.prev();
 							}else{
+								this.$refs.lyric.style[`opacity`]=0
+								this.$refs.cdlyric.style[`opacity`]=0
+								this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,0,0)`
+								this.$refs.cd.style[`transition-duration`]=`600ms`
+								setTimeout(()=>{
+									this.$refs.cd.style[`transform`]=`scale(0.4,0.4) translate3d(0,-200%,0)`
+									this.$refs.cd.style[`transition-duration`]=`400ms`
+								},600)
 								setTimeout(()=>{
 									this.$refs.cd.style[`transform`]=`translate3d(0,0,0)`
 									this.$refs.cd.style[`transition-duration`]=`1000ms`
 									this.setPlayingState(true);
 									this.setCurrentIndex(index);
 									this.seturl(url);
-									this.setnextready(false);
-								console.log("上一首")
 								},1000)
 							}
 						}
 					})
 				}		
 			},
-			getLyric(){
+			getLyric: debounce(function(){
+				this.cdlyric=''
+					if(!this.currentSong.mid){
+						return
+					}
+				
 				this.currentSong.getLyric().then((lyric)=>{
+					console.log("获取歌词成功")
 					this.currentLyric=new Lyric(lyric,this.handleLyric)
-					
+					if(this.currentLyric.state==0){
+						this.cdlyric='此歌曲为没有填词的纯音乐，请您欣赏'
+					}
 					this.$refs.lyric.style[`opacity`]=1
 					this.$refs.cdlyric.style[`opacity`]=1
 					if(this.playing){
 						this.currentLyric.play()
 					}
 					setTimeout(()=>{
+						console.log("歌词Scroll刷新")
 						this.$refs.lyricList.refresh()
-						console.log("refresh")
-					},1500)
-					this.setnextready(true);
-					console.log("开始播放歌词")
-					
+					},1800)
 					
 				}).catch(()=>{
+					console.log("暂无歌词")
 					this.currentLyric=null
-					this.cdlyric=''
+					this.$refs.lyric.style[`opacity`]=1
+					this.$refs.cdlyric.style[`opacity`]=1
+					this.cdlyric='网络延迟，暂无歌词'
 					this.currentLineNum=0
 				})
-			},
+			},2000),
 			handleLyric({lineNum,txt}){
 				this.currentLineNum=lineNum
 				if(lineNum>=5){
@@ -495,18 +526,19 @@
 		},
 		watch:{
 			url(newurl,oldurl){
+				if (!newurl) {
+				return
+				}
 				if(newurl===oldurl){
 				return 	
 				}
 				if(this.currentLyric){
-					this.currentLyric.stop()
-					console.log("歌词stop")
+					this.currentLyric.stop()	
 				}
+				this.getLyric()
 				setTimeout(()=>{
-					this.getLyric()
-					console.log("获取歌词")
-					this.$refs.audio.play()
-				},1000)
+				this.$refs.audio.play()
+				},100)
 			},
 			playing(newPlaying){
 				this.$nextTick(()=>{
@@ -520,7 +552,8 @@
 		components:{
 			progressbar,
 			ProgressCircle,
-			Scroll
+			Scroll,
+			playlist
 		}
 	}
 </script>
@@ -612,7 +645,7 @@
 	}
     .cd-wrapper{
 		margin: 0 auto;
-		width: 80%;
+		width: 75%;
 	}
 	.cd{
 		width: 80%;
@@ -749,9 +782,16 @@
 		height: 25px; 
 		border-radius: 50%; 
 		border: 3px solid #00bf00; 
-		margin-left: 50px;
+		margin-left: 40px;
 		margin-top: -28px;
 	} 
+	.mini-list{
+		position: absolute;
+		width: 25px;
+		height: 25px;
+		margin-top: -25px;
+		margin-left: 80px;
+	}
     .control{
 		width: 100px;
 		height: 100%;
@@ -767,7 +807,7 @@
 		margin-top: 10%;
 	}	
 	.current{
-		color: white;
+		color: lightgreen;
 	}
 	.dot-wrapper{
 		text-align: center;

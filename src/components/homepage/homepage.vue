@@ -6,7 +6,7 @@
 					<slider>
 						<div  v-for="item in img"  :key="item.id">
 							<a v-bind:href="item.linkUrl">
-								<img @load="loadImage" :src="item.picUrl" />
+								<img  :src="item.picUrl" />
 							</a>
 						</div>
 					</slider>
@@ -75,15 +75,9 @@
 					}
 				})
 			},
-			loadImage(){
-				if(!this.checkLoaded){
-					this.$refs.scroll.refresh()
-					this.checkLoaded=true
-				}	
-			},
 			selectItem(item){
 				this.$router.push({
-					path:'/homepage/${item.dissid}'
+					path:`/homepage/${item.dissid}`
 				})
 				this.setDisc(item)
 			},
@@ -105,7 +99,7 @@
 		position: fixed;
 		width: 100%;
 		bottom: 0;
-		top: 84px;
+		top: 88px;
 	}
 	.homepage-content{
 		height: 100%;

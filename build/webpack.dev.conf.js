@@ -71,6 +71,20 @@ before(app) {
 			console.log(e)
 		})
 	}),
+	 app.get('/api/search', function (req, res) { //搜索代理
+	var url='https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp'
+			axios.get(url, {
+	      headers: {
+	        referer: 'https://c.y.qq.com/',
+	        host: 'c.y.qq.com'
+	      },
+	      params: req.query
+	    }).then((response) => {
+	      res.json(response.data)
+	    }).catch((e) => {
+	      console.log(e)
+	    })
+	  }),
     app.get('/api/getDiscList', function (req, res) { //歌单代理
 		var url='https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
 				axios.get(url, {

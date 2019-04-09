@@ -12,7 +12,7 @@
 					<span class="title" v-for="title in item.topTitle" :key="title.id" >{{title}}</span>		
 					<div class="topsong" v-for="(song,index) in item.songList" :key="index" >
 						<span>{{index + 1}}</span>
-						<span class="sname">{{song.songname}}</span><span>&nbsp;- {{song.singername}}</span>
+						<span class="sname">{{song.songname}}&nbsp;- {{song.singername}}</span>
 					</div>
 					</li>
 				</ul>
@@ -131,7 +131,7 @@
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		margin-left: 5px;
-		color: #000000;
+		color: rgba(0,0,0,0.6);
 	}
     .loading-container{
         position: absolute;

@@ -2,7 +2,7 @@
 	<div class="header">
 		<div class="icon" ></div>
 		<span class="title">{{title}}</span>
-		<span class="title" style="float: right;margin-right: 10px;">by:{{author}}</span>
+		<span class="title" style="float: right;margin-right: 10px;"></span>
 	</div>
 </template>
 
@@ -21,7 +21,6 @@
 	.header{
 		position: relative;
 		height: 44px;
-		margin-top: 0;
 		background: #31c27c;
 	}
 	.icon{

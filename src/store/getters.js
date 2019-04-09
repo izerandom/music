@@ -18,7 +18,7 @@ export const url =state =>state.url
 
 export const currentIndex =state =>state.currentIndex
 
-export const nextready =state =>state.nextready
+
 
 export const currentSong =(state)=>{
 	return state.playList[state.currentIndex]||{}

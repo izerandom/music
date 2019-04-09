@@ -2,8 +2,7 @@
   <div class="song-list">
     <ul>
       <li @click="selectItem(song,index)" class="item" v-for="(song, index) in songs" :key="index">
-		<span class="rank" :class="getRankCls(index)" v-if="index<9">{{index + 1}}&nbsp;&nbsp;</span>
-		<span class="rank" :class="getRankCls(index)" v-else>{{index + 1}}</span>
+		<span class="rank" :class="getRankCls(index)" >{{index + 1}}</span>
         <div class="content" >
           <h5 class="name">{{song.name}}</h5>
           <p class="desc">{{getDesc(song)}}</p>
@@ -16,6 +15,7 @@
 <script>
 	import {getSongVkey} from 'api/song.js'
 	import {ERR_OK} from 'api/config.js'
+	import {debounce,throttle} from 'common/js/util.js'
   export default {
 	 
     props: {
@@ -40,9 +40,9 @@
 				}
 			}
 		},
-		selectItem(item,index){
+		selectItem:throttle(function(item,index){
 			this.$emit('select', item, index)
-		}
+		},500)
 
 	}
   }
@@ -59,7 +59,10 @@
 		
 	}
 	.rank{
-		margin-right: 20px;
+		margin-right: 5%;
+		width: 5%;
+		height: 100%;
+		line-height: 60px;
 	}
     .content{
         flex: 1;

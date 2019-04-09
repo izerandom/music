@@ -7,10 +7,10 @@
 
 <script>
 	import ListView from '../../CommonComponen/listview/listview.vue'
-  import {getSingerList} from 'api/singer'
-  import {ERR_OK} from 'api/config'
-  import Singer from '../../common/js/singer.js'
-  import {mapMutations} from 'vuex'
+	import {getSingerList} from 'api/singer'
+	import {ERR_OK} from 'api/config'
+	import Singer from '../../common/js/singer.js'
+	import {mapMutations} from 'vuex'
 	import {playlistMixin} from 'common/js/mixin.js'
   const HOT_SINGER_LEN = 10
   const HOT_NAME = '热门'

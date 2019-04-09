@@ -45,7 +45,7 @@
 					this._play()
 				}
 			}, 20)
-		window.addEventListener('resize', () => {   //同上，避免网络延迟导致图片未加载的问题
+		window.addEventListener('resize', () => {   //窗口宽度变化时，重新设置宽度
 			if (!this.slider) {
 			return
 		}
@@ -101,7 +101,7 @@
 				  }
 				})
 				this.slider.on('beforeScrollStart', () => {
-					if (this.autoPlay) {
+					if (this.autoPlay) { //自动轮播前清除定时
 						clearTimeout(this.timer)
 					}
 				})

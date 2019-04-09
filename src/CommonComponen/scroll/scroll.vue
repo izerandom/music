@@ -25,7 +25,7 @@
 			listenScroll: {
 				type: Boolean,
 				default: false
-			  },
+			},
 			data: {    //初始化数据
 				type: Array,
 				default: null
@@ -33,6 +33,18 @@
 			refreshDelay: {
 				type: Number,
 				default: 20
+			},
+			beforeScroll: {
+				type: Boolean,
+				default: false
+			},
+			pullup:{  //底部上拉
+				type:Boolean,
+				default:false
+			},
+			pulldown: {  //顶部下拉
+				type: Boolean,
+				default: false
 			}
 		},
 		computed: {
@@ -63,7 +75,7 @@
 
 			if (this.pullup) {
 				this.scroll.on('scrollEnd', () => {
-					if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+					if (this.scroll.y <= (this.scroll.maxScrollY + 45)) {
 					this.$emit('scrollToEnd')
 					}
 				})
@@ -96,7 +108,7 @@
 			data() {
 				setTimeout(() => {
 					this.refresh()
-				}, 20)
+				}, 200)
 			}
 		}
 	}

@@ -1,6 +1,5 @@
 
 import * as types from './mutation-types.js'
-
 const matutions ={
 	[types.SET_SINGER](state,singer){
 		state.singer=singer
@@ -16,9 +15,6 @@ const matutions ={
 	},
 	[types.SET_PLAYING_STATE](state,flag){
 		state.playing=flag
-	},
-	[types.SET_NEXTREADY](state,flag){
-		state.nextready=flag
 	},
 	[types.SET_PLAYLIST](state,list){
 		state.playList=list

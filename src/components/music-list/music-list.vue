@@ -37,8 +37,9 @@
 	import Scroll from '../../CommonComponen/scroll/scroll.vue'
 	import Loading from '../../CommonComponen/loading/loading.vue'
 	import SongList from '../../CommonComponen/song-list/song-list.vue'
-	import {mapGetters,mapActions,mapMutations} from 'vuex'
+	import {mapActions} from 'vuex'
 	import {playlistMixin} from 'common/js/mixin.js'
+	import {debounce,throttle} from 'common/js/util.js'
 	const RESERVED_HEIGHT =40
 	export default {
 		mixins:[
@@ -78,10 +79,7 @@
 			},
 			top(){
 				return `top :${this.height}px`
-			},
-			...mapGetters([
-				'nextready'
-			])
+			}
 		},
 		created() {
 			this.probeType = 3
@@ -98,7 +96,6 @@
 			handlePlaylist(playList){
 				const bottom =playList.length >0 ? '55px' : ''
 				this.$refs.list.$el.style.bottom=bottom
-				console.log("bottom refresh")
 				this.$refs.list.refresh()
 			},
 			back() {
@@ -107,51 +104,33 @@
 			scroll(pos) {
 				this.scrollY = pos.y
 			},
-			random(){
-				if(this.nextready){
-					this.setnextready(false)
+			random: throttle(function(){
 					this.randomPlay({
 						list:this.songs,
 						set:false
 					})
-				}else{
-					console.log("频繁操作")
-					return 
-				}
-				
-			},
+				},500),
 			selectItem(item,index){
-				if(this.nextready){
-					this.setnextready(false)
-					getSongVkey(this.songs[index].mid).then((res) => {
-						if (res.code === ERR_OK) {
-							const url=`http://dl.stream.qqmusic.qq.com/C400${this.songs[index].mid}.m4a?fromtag=38&guid=5931742855&vkey=${res.data.items[0].vkey}`;
-						if(res.data.items[0].vkey==''){
-							this.setnextready(true)
-							alert(this.songs[index].name+"——"+this.songs[index].singer+"为付费歌曲，请前往QQ音乐支持正版");
-						}else{
-							this.selectPlay({
-								list:this.songs,
-								index:index,
-								url:url,
-								set:false
-							})
-							console.log("musiclist接收到url并播放")
-						}
+				getSongVkey(this.songs[index].mid).then((res) => {
+					if (res.code === ERR_OK) {
+						const url=`http://dl.stream.qqmusic.qq.com/C400${this.songs[index].mid}.m4a?fromtag=38&guid=5931742855&vkey=${res.data.items[0].vkey}`;
+					if(res.data.items[0].vkey==''){
+						alert(this.songs[index].name+"——"+this.songs[index].singer+"为付费歌曲，请前往QQ音乐支持正版");
+					}else{
+						this.selectPlay({
+							list:this.songs,
+							index:index,
+							url:url,
+							set:false
+						})
 					}
-					})
-				}else{
-					console.log("频繁操作")
-					return 
 				}
+				})
 			},
 			...mapActions([
 				'selectPlay',
-				'randomPlay',
-			]),
-			...mapMutations({
-				setnextready:'SET_NEXTREADY'
-			})
+				'randomPlay'
+			])
 		},
 		components: {
 			Scroll,
@@ -270,5 +249,5 @@
         width: 100%;
         height: 100%;
         background: rgba(7, 17, 27, 0.4);
-	}
+	} 
 </style>

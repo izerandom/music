@@ -21,8 +21,8 @@ export function getSongVkey(songmid) {
 }
 //歌词
 export function getLyric(mid) {
-    // const url = '/api/lyric'
-const url='http://973369559.com/getlyric.php'
+      const url = '/api/lyric'
+ //const url='http://973369559.com/getlyric.php'
   const data = Object.assign({}, commonParams, {
     songmid: mid,
     platform: 'yqq',
@@ -33,9 +33,10 @@ const url='http://973369559.com/getlyric.php'
     format: 'json'
   })
 
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
+  return axios.get(url, { params: data}).then((res) => {
     return Promise.resolve(res.data)
-  })
+  }).catch(()=>{
+		console.log("api未获取到歌词")
+		return "暂无歌词"
+	})
 }
